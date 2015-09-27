@@ -80,6 +80,13 @@ the following format:</p>
 <p>The output file of <code class="docutils literal"><span class="pre">norm_counts.snakefile</span></code> is a table of gene-level
 quantile-normalized counts per million (CPM). One row per gene, and one column
 per sample:</p>
+<div class="highlight-python"><div class="highlight"><pre>LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+ENSG00000234515	17.8687589559481	1.0769198527651	-1	-1	4.82703381950925	6.38863928575311	-1	-1	5.68281394137488	-1
+ENSG00000264113	-1	-1	-1	17.8687589559481	-0.0576641927637963	-1	12.1996591413175	16.6358805540731	7.30331969731323	17.8687589559481
+ENSG00000243514	-1	1.0769198527651	-1	2.50532392304214	-1	14.2884920493533	13.065890821649	-1	15.3885252912467	-1
+ENSG00000103415	-1	11.0105207510527	4.32755526660216	12.1996591413175	2.50532392304214	5.24816249855466	11.7813206156511	-1	-1	8.8974528747595
+</pre></div>
+</div>
 </div>
 <div class="section" id="zscores-snakefile">
 <span id="zscores"></span><h2><code class="docutils literal"><span class="pre">zscores.snakefile</span></code><a class="headerlink" href="#zscores-snakefile" title="Permalink to this headline">¶</a></h2>
@@ -88,6 +95,13 @@ zscores. In the absence of matched controls, these zscores are then used as
 a proxy for direction and magnitude of differential expression.</p>
 <img alt="_images/zscores_dag.png" src="_images/zscores_dag.png" />
 <p>Output looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+ENSG00000234515	11.580968729376	0.674490759476595	-0.674490759476595	-0.674490759476595	3.11022963903472	4.12450898691359	-0.674490759476595	-0.674490759476595	3.66606792386179	-0.674490759476595
+ENSG00000264113	-0.674490759476595	-0.674490759476595	-0.674490759476595	2.07854358239692	-0.53699984950445	-0.674490759476595	1.25139715937969	1.8986612389084	0.53699984950445	2.07854358239692
+ENSG00000243514	-0.674490759476595	0.674490759476595	-0.674490759476595	1.60225438494143	-0.674490759476595	9.25554732060764	8.46145482877324	-0.674490759476595	9.97003060294169	-0.674490759476595
+ENSG00000103415	-0.674490759476595	0.7251607226062	-0.053641690619681	0.863737504149148	-0.26599624656081	0.053641690619681	0.814986234358453	-0.674490759476595	-0.674490759476595	0.478913399438626
+</pre></div>
+</div>
 </div>
 <div class="section" id="variants-snakefile">
 <span id="variants"></span><h2><code class="docutils literal"><span class="pre">variants.snakefile</span></code><a class="headerlink" href="#variants-snakefile" title="Permalink to this headline">¶</a></h2>
@@ -116,6 +130,13 @@ total number of variants across a gene in a sample.</p>
 contain those with high impact, the value for each gene represents the total
 number of rows in the VCF file annotated with transcript IDs (<cite>EFF[*].TRID</cite>
 column) belonging to that gene.</p>
+<div class="highlight-python"><div class="highlight"><pre>ENSEMBL	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+ENSG00000005238	0.0	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0
+ENSG00000005483	1.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+ENSG00000006377	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+ENSG00000006788	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0
+</pre></div>
+</div>
 </div>
 <div class="section" id="cnv-snakefile">
 <span id="cnv"></span><h2><code class="docutils literal"><span class="pre">cnv.snakefile</span></code><a class="headerlink" href="#cnv-snakefile" title="Permalink to this headline">¶</a></h2>
@@ -149,8 +170,29 @@ largest magnitude CNV that overlaps the gene (&#8220;max&#8221;), or the score o
 longest segment that overlaps the gene (&#8220;longest&#8221;):</p>
 <img alt="_images/gene-scores-diagram.png" src="_images/gene-scores-diagram.png" />
 <p>The final cluster scores output file looks like the following:</p>
+<div class="highlight-python"><div class="highlight"><pre>cluster_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+1_746638_752741	0.0	-0.3851	1.1942	-0.6339	-1.3537	0.0095	-0.9704	0.563	-3.252	-3.3
+1_752741_1613780	0.3181	-0.3851	1.1942	-0.6339	-1.3537	0.0095	-0.9704	0.563	-3.252	-3.3
+1_1613780_1651398	0.3181	-0.3851	1.1942	-0.6339	-1.3537	0.0095	-0.9704	0.563	0.0	-3.3
+1_1651398_1664194	0.3181	-0.3851	1.1942	-0.6339	-1.3537	0.0095	-0.9704	0.563	-1.6732	-3.3
+</pre></div>
+</div>
 <p>And the &#8220;max&#8221; gene scores:</p>
+<div class="highlight-python"><div class="highlight"><pre>gene_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+ENSG00000000003	0.8189	-0.0806	-1.3841	-1.6282	0.6118	0.0537	-0.6318	0.5661	0.0424	0.5658
+ENSG00000000005	0.8189	-0.0806	-1.3841	-1.6282	0.6118	0.0537	-0.6318	0.5661	0.0424	0.5658
+ENSG00000000419	0.3678	-0.517	0.3748	0.2662	1.3093	-1.0073	-4.5621	-1.3006	-0.9166	-1.4437
+ENSG00000000457	-0.9155	0.2732	0.6348	-0.5872	-0.5819	0.5559	-1.4232	-0.2612	-2.4134	-4.2292
+</pre></div>
+</div>
 <p>And the &#8220;longest&#8221; gene scores:</p>
+<div class="highlight-python"><div class="highlight"><pre>gene_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+ENSG00000000003	0.8189	-0.0806	-1.3841	-1.6282	0.6118	0.0537	-0.6318	0.5661	0.0424	0.5658
+ENSG00000000005	0.8189	-0.0806	-1.3841	-1.6282	0.6118	0.0537	-0.6318	0.5661	0.0424	0.5658
+ENSG00000000419	0.3678	-0.517	0.3748	0.2662	1.3093	-1.0073	-4.5621	-1.3006	-0.9166	-1.4437
+ENSG00000000457	-0.9155	0.2732	0.6348	-0.5872	-0.5819	0.5559	-1.4232	-0.2612	-2.4134	-4.2292
+</pre></div>
+</div>
 </div>
 <div class="section" id="pathways">
 <h2>Pathways<a class="headerlink" href="#pathways" title="Permalink to this headline">¶</a></h2>
@@ -170,7 +212,21 @@ derived from zscores, variants, and CNV data.</p>
 <a class="reference internal" href="#variants"><span>variants.snakefile</span></a> and <a class="reference internal" href="#zscores"><span>zscores.snakefile</span></a>.</p>
 <img alt="_images/cpdb_dag.png" src="_images/cpdb_dag.png" />
 <p>Variants output file:</p>
+<div class="highlight-python"><div class="highlight"><pre>pathway_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+N-Glycan_biosynthesis_sum_var	0.0	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+None_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0
+PA152241951_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0
+Pathway_EGFR1_sum_var	0.0	1.0	4.0	1.0	1.0	1.0	3.0	1.0	2.0	1.0
+</pre></div>
+</div>
 <p>Zscores output file:</p>
+<div class="highlight-python"><div class="highlight"><pre>pathway_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+N-Glycan_biosynthesis_sum_pos		0.6744907594765949	3.5638961701333796				1.03207331666923	4.1439504657554		3.00806348507059
+None_sum_pos	0.131088071579741		1.4664123740802788	0.8307047838158309	0.32206503184169205	2.8771587960372305	1.8697663658591699	1.5811716854272402	0.407459235642265	
+PA152241951_sum_pos	1.3566355942144999		0.423897601727489		0.157361464312241		1.14508070430709			0.554828755663669
+PWY-5874_sum_pos		0.7251607226062		0.8637375041491481		0.053641690619681	0.814986234358453			0.47891339943862604
+</pre></div>
+</div>
 </div>
 <div class="section" id="gene-ontology">
 <span id="go"></span><h3>Gene ontology<a class="headerlink" href="#gene-ontology" title="Permalink to this headline">¶</a></h3>
@@ -178,7 +234,21 @@ derived from zscores, variants, and CNV data.</p>
 <a class="reference internal" href="#variants"><span>variants.snakefile</span></a> and <a class="reference internal" href="#zscores"><span>zscores.snakefile</span></a>.</p>
 <img alt="_images/go_dag.png" src="_images/go_dag.png" />
 <p>Variants output file:</p>
+<div class="highlight-python"><div class="highlight"><pre>pathway_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+GO_0000122_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0
+GO_0000978_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0
+GO_0001077_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0
+GO_0001133_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0
+</pre></div>
+</div>
 <p>Zscores output file:</p>
+<div class="highlight-python"><div class="highlight"><pre>pathway_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+GO_0000122_sum_pos	2.3518180778796096	1.76273485147185	0.694044921834633	3.9069612972010397	1.4971888921138388	0.9013622016070708	2.694214312746489		2.040518117783778	
+GO_0000159_sum_pos	2.48468185483921		1.69424387076123		1.1789473338098202	0.8296420036025209			0.597470904863933	
+GO_0000287_sum_pos	1.3566355942144999		0.423897601727489		0.157361464312241		1.14508070430709			0.554828755663669
+GO_0000775_sum_pos	2.48468185483921		1.69424387076123		1.1789473338098202	0.8296420036025209			0.597470904863933	
+</pre></div>
+</div>
 </div>
 <div class="section" id="msig-database">
 <span id="msigdb"></span><h3>MSIG database<a class="headerlink" href="#msig-database" title="Permalink to this headline">¶</a></h3>
@@ -186,7 +256,21 @@ derived from zscores, variants, and CNV data.</p>
 <a class="reference internal" href="#variants"><span>variants.snakefile</span></a> and <a class="reference internal" href="#zscores"><span>zscores.snakefile</span></a>.</p>
 <img alt="_images/msigdb_dag.png" src="_images/msigdb_dag.png" />
 <p>Variants output file:</p>
+<div class="highlight-python"><div class="highlight"><pre>pathway_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+KEGG_CHEMOKINE_SIGNALING_PATHWAY_sum_var	0.0	0.0	1.0	0.0	1.0	0.0	1.0	0.0	0.0	0.0
+KEGG_CYTOKINE_CYTOKINE_RECEPTOR_INTERACTION_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0
+KEGG_JAK_STAT_SIGNALING_PATHWAY_sum_var	0.0	0.0	0.0	0.0	0.0	0.0	1.0	0.0	0.0	0.0
+KEGG_N_GLYCAN_BIOSYNTHESIS_sum_var	0.0	1.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+</pre></div>
+</div>
 <p>Zscores output file:</p>
+<div class="highlight-python"><div class="highlight"><pre>pathway_id	LineA_1	LineB_2	LineC_3	LineD_4	LineE_5	LineF_6	LineG_7	LineH_8	LineI_9	LineJ_10
+BIOCARTA_CHREBP2_PATHWAY_sum_pos	2.48468185483921		1.69424387076123		1.1789473338098202	0.8296420036025209			0.597470904863933	
+BIOCARTA_IL22BP_PATHWAY_sum_pos	0.131088071579741		1.24411249036296	0.8307047838158309		1.9757965944301599		1.5811716854272402		
+KEGG_ARACHIDONIC_ACID_METABOLISM_sum_pos	1.3566355942144999		0.423897601727489		0.157361464312241		1.14508070430709			0.554828755663669
+KEGG_CYTOKINE_CYTOKINE_RECEPTOR_INTERACTION_sum_pos	0.131088071579741		1.24411249036296	0.8307047838158309		1.9757965944301599		1.5811716854272402		
+</pre></div>
+</div>
 </div>
 </div>
 </div>
