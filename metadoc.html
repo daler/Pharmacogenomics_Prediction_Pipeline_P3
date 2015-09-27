@@ -67,8 +67,8 @@ first the example pipeline must have been successfully run. Here&#8217;s how to 
 that on the biowulf cluster:</p>
 <div class="highlight-bash"><div class="highlight"><pre>./clean-example-data.sh
 module load bedtools R  <span class="c"># on biowulf</span>
-snakemake -npr -s runall.snakefile  <span class="c"># dry run</span>
-snakemake -pr -s runall.snakefile  <span class="c"># run everything</span>
+snakemake -npr -s Snakefile  <span class="c"># dry run</span>
+snakemake -pr -s Snakefile  <span class="c"># run everything</span>
 </pre></div>
 </div>
 <p>If you have made any changes to the documentation, make sure you commit them
@@ -82,6 +82,25 @@ now:</p>
 This is generally a good assumption because it means that the docs match
 the code in master. But merging from another branch might be useful if
 you&#8217;re playing around with changes to the docs themselves.</p>
+</div>
+</div>
+<div class="section" id="run-build-docs-sh">
+<h2>Run <cite>build-docs.sh</cite><a class="headerlink" href="#run-build-docs-sh" title="Permalink to this headline">¶</a></h2>
+<p>Run:</p>
+<div class="highlight-python"><div class="highlight"><pre>./build-docs.sh
+</pre></div>
+</div>
+<p>This will build and upload docs to the currently-configured origin. If this is
+run on your fork of the P3 code, it will upload the docs to your fork, such
+that you can view it at:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;username&gt;.github.io/Pharmacogenomics_Prediction_Pipeline_P3
+</pre></div>
+</div>
+<p>If you would like to build and upload for another repo that you have write
+access to &#8211; say, to update the docs in the main repo &#8211; then pass that repo as
+the first argument to <cite>build-docs.sh</cite>.  E.g.,:</p>
+<div class="highlight-python"><div class="highlight"><pre>./build-docs.sh git@github.com:NCBI-Hackathons/Pharmacogenomics_Prediction_Pipeline_P3.git
+</pre></div>
 </div>
 </div>
 <div class="section" id="merge-master-with-gh-pages-branch">
@@ -114,6 +133,7 @@ git push origin gh-pages
 <h2>Switch back to master branch<a class="headerlink" href="#switch-back-to-master-branch" title="Permalink to this headline">¶</a></h2>
 <p>And finally, get back to the master branch:</p>
 <div class="highlight-python"><div class="highlight"><pre>git checkout master
+&lt;username&gt;.github.io/
 </pre></div>
 </div>
 </div>
@@ -134,6 +154,7 @@ git push origin gh-pages
   <ul>
 <li><a class="reference internal" href="#">Documentation about the documentation</a><ul>
 <li><a class="reference internal" href="#run-the-pipeline-on-example-data">Run the pipeline on example data</a></li>
+<li><a class="reference internal" href="#run-build-docs-sh">Run <cite>build-docs.sh</cite></a></li>
 <li><a class="reference internal" href="#merge-master-with-gh-pages-branch">Merge master with gh-pages branch</a></li>
 <li><a class="reference internal" href="#make-the-docs-while-in-the-gh-pages-branch">Make the docs while in the <cite>gh-pages</cite> branch</a></li>
 <li><a class="reference internal" href="#check-output-and-push-to-github">Check output and push to github</a></li>
