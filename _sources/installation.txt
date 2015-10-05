@@ -47,8 +47,7 @@ example in an isolated environment:
 
     snakemake -j8
 
-- Output will be in `example_data/runs/run_1/output/`. The final output
-  consists of one `.RData` file for each configured sample. Each file can be
-  loaded into R, and contains a single object called `outSL` that contains the
-  output of the SuperLearner run for that sample.
-
+Output will be in `example_data/runs/run_1/output/`. The final output
+consists of one `.RData` file for each configured sample. Each file can be
+loaded into R, and contains a single object called `outSL` that contains the
+output of the SuperLearner run for that sample.
