@@ -62,10 +62,49 @@
 can be easily parallelized to run across multiple CPUs.</p>
 <p><strong>Requirements</strong></p>
 <p>The <cite>deploy/</cite> directory contains requirements files for Python, R, and Ubuntu.
-These requirements have been included in the Docker container (&#64;TODO link here)
-The accompanying <cite>Dockerfile</cite> shows the setup to be performed (using the
-Bioconductor Docker container as a base) and the container will be eventually
-provided on docker hub.</p>
+These requirements have been included in the Docker container. To run the
+example in an isolated environment:</p>
+<ol class="arabic">
+<li><p class="first"><cite>Install docker &lt;https://docs.docker.com/&gt;</cite>.</p>
+</li>
+<li><p class="first">Clone the git repository:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/NCBI-Hackathons/Pharmacogenomics_Prediction_Pipeline_P3.git P3
+</pre></div>
+</div>
+</li>
+<li><p class="first">Pull the docker container:</p>
+<div class="highlight-python"><div class="highlight"><pre>docker pull daler/p3
+</pre></div>
+</div>
+</li>
+<li><p class="first">Change to the repository directory and start the container, exporting the repository directory to the running container:</p>
+<p>cd P3
+docker run -i -v <cite>pwd</cite>:/data -t daler/p3 /bin/bash</p>
+</li>
+<li><p class="first">You should now be in the running docker container, in the <cite>/data</cite> directory,
+and with the contents of the repository in that directory. Run <cite>snakemake</cite>
+using the <cite>prepare_example_data</cite> rule to unzip the example data into the
+aptly-named <cite>example_data</cite> directory:</p>
+<div class="highlight-python"><div class="highlight"><pre>snakemake prepare_example_data
+</pre></div>
+</div>
+</li>
+<li><p class="first">Do a dry run to see what needs to be run:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">snakemake</span> <span class="o">-</span><span class="n">n</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the pipeline, using <cite>-j</cite> to specify the number of processors to use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">snakemake</span> <span class="o">-</span><span class="n">j8</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Output will be in <cite>example_data/runs/run_1/output/</cite>. The final output is one
+<cite>.RData</cite> file for each sample. These files can be loaded into R, and
+contains a single object called <cite>outSL</cite> that contains the output of the
+SuperLearner run for that sample.</p>
+</li>
+</ol>
 </div>
 
 

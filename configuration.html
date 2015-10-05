@@ -173,6 +173,7 @@ snakefile that does the work.  See <a class="reference internal" href="topic-sna
         <span class="l-Scalar-Plain">response_list</span><span class="p-Indicator">:</span> <span class="s">&quot;SIDs.txt&quot;</span>
         <span class="l-Scalar-Plain">response_column</span><span class="p-Indicator">:</span> <span class="s">&quot;DATA0&quot;</span>
         <span class="l-Scalar-Plain">response_template</span><span class="p-Indicator">:</span> <span class="s">&quot;{prefix}/processed/drug_response/{sample}_drugResponse.tab&quot;</span>
+        <span class="l-Scalar-Plain">SL_library_file</span><span class="p-Indicator">:</span> <span class="s">&quot;tools/default_SL_library.R&quot;</span>
 </pre></div>
 </div>
 <p><cite>run_info</cite> is a dictionary that defines multiple runs. It is intended as the entry
@@ -205,6 +206,17 @@ output files of the form <cite>{sample}_drugResponse.tab</cite></td>
 <tr class="field-odd field"><th class="field-name" colspan="2">response_column:</th></tr>
 <tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Each response file specified in the <cite>response_template</cite> field may have
 several variables. Specify the column name here.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">SL_library_file:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">This is an R script that defines a library for SuperLearner. This file is
+sourced right before calling <cite>SuperLearner()</cite>, and, upon being sourced,
+this script must define a variable <cite>SL.library</cite> which will be provided to
+the <cite>SuperLearner()</cite> function. The simplest case is a character vector of
+algorithms to use. In the example above, the file
+<cite>tools/default_SL_library.R</cite> simply contains the single line, <code class="docutils literal"><span class="pre">SL.library</span>
+<span class="pre">&lt;-</span> <span class="pre">c(&quot;SL.randomForest&quot;,</span> <span class="pre">&quot;SL.glmnet&quot;,</span> <span class="pre">&quot;SL.mean&quot;)</span></code>. However, it is possible
+to write custom wrappers in this script for SuperLearner to use.
+See the <a class="reference external" href="https://cran.r-project.org/web/packages/SuperLearner/SuperLearner.pdf">SuperLearner docs</a></td>
 </tr>
 </tbody>
 </table>
@@ -276,21 +288,35 @@ several variables. Specify the column name here.</td>
         <span class="l-Scalar-Plain">snakefile</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">features/zscores.snakefile</span>
         <span class="l-Scalar-Plain">output</span><span class="p-Indicator">:</span>
             <span class="l-Scalar-Plain">zscores</span><span class="p-Indicator">:</span> <span class="s">&quot;{prefix}/cleaned/rnaseq_expression/zscores.csv&quot;</span>
-            <span class="l-Scalar-Plain">zscore_estimates</span><span class="p-Indicator">:</span> <span class="s">&quot;{prefix}/cleaned/rnaseq_expression/zscore_estimates.csv&quot;</span>
+            <span class="c1">#zscore_estimates: &quot;{prefix}/cleaned/rnaseq_expression/zscore_estimates.csv&quot;</span>
 
 <span class="l-Scalar-Plain">run_info</span><span class="p-Indicator">:</span>
+    <span class="c1"># Each run defines a unique comination of feature filtering, response data,</span>
+    <span class="c1"># and learning parameters.</span>
+
     <span class="l-Scalar-Plain">run_1</span><span class="p-Indicator">:</span>
+
+        <span class="c1"># The `run1` function, found in the Python module `filterfuncs.py`,</span>
+        <span class="c1"># will be called on each feature set in this run.</span>
         <span class="l-Scalar-Plain">feature_filter</span><span class="p-Indicator">:</span> <span class="s">&quot;filterfuncs.run1&quot;</span>
 
-        <span class="c1"># The pipeline will create a NxM matrix, where N is the number of drugs</span>
-        <span class="c1"># listed in `response_list`, M is the number of samples listed in the</span>
-        <span class="c1"># `sample_list`.  The values in the matrix will be extracted from the</span>
-        <span class="c1"># column called &quot;response_column&quot; from the files matching the template</span>
-        <span class="c1"># in &quot;response_template&quot;</span>
+        <span class="c1"># One model will be trained for each reponse listed the `response_list`</span>
+        <span class="c1"># file.</span>
         <span class="l-Scalar-Plain">response_list</span><span class="p-Indicator">:</span> <span class="s">&quot;SIDs.txt&quot;</span>
+
+        <span class="c1"># Specify the samples to use. This file can be used to globally filter</span>
+        <span class="c1"># out a particular sample for this run</span>
         <span class="l-Scalar-Plain">sample_list</span><span class="p-Indicator">:</span> <span class="s">&quot;celllines.txt&quot;</span>
+
+        <span class="c1"># The &quot;process_response&quot; rule creates several output files for each</span>
+        <span class="c1"># sample. The `response_template` specifies which file to use, and must</span>
+        <span class="c1"># include a {sample} placeholder in the filename. `response_column`</span>
+        <span class="c1"># specifies which column in that file to use for the response data.</span>
         <span class="l-Scalar-Plain">response_template</span><span class="p-Indicator">:</span> <span class="s">&quot;{prefix}/processed/drug_response/{sample}_drugResponse.tab&quot;</span>
         <span class="l-Scalar-Plain">response_column</span><span class="p-Indicator">:</span> <span class="s">&quot;DATA0&quot;</span>
+
+        <span class="c1"># R script defining the &quot;SL.library&quot; to use for SuperLearner.</span>
+        <span class="l-Scalar-Plain">SL_library_file</span><span class="p-Indicator">:</span> <span class="s">&quot;tools/default_SL_library.R&quot;</span>
 </pre></div>
 </div>
 </div>
