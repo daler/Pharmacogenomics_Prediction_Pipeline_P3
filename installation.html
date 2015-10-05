@@ -77,8 +77,8 @@ example in an isolated environment:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">You should now be in the running docker container, in the <cite>/data</cite>
-directory, From inside the container, clone the git repository:</p>
+<li><p class="first">You should now be in the running docker container, in the <cite>/data</cite> directory,
+From inside the container, clone the git repository:</p>
 <div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/NCBI-Hackathons/Pharmacogenomics_Prediction_Pipeline_P3.git
 </pre></div>
 </div>
@@ -94,17 +94,15 @@ data into the aptly-named <cite>example_data</cite> directory:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Do a dry run to see what needs to be run:</p>
+</ul>
+<p>Do a dry run to see what needs to be run:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">snakemake</span> <span class="o">-</span><span class="n">n</span>
 </pre></div>
 </div>
-</li>
-<li><p class="first">Run the pipeline, using <cite>-j</cite> to specify the number of processors to use:</p>
+<p>Run the pipeline, using <cite>-j</cite> to specify the number of processors to use:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">snakemake</span> <span class="o">-</span><span class="n">j8</span>
 </pre></div>
 </div>
-</li>
-</ul>
 <p>Output will be in <cite>example_data/runs/run_1/output/</cite>. The final output
 consists of one <cite>.RData</cite> file for each configured sample. Each file can be
 loaded into R, and contains a single object called <cite>outSL</cite> that contains the
