@@ -64,8 +64,8 @@ can be easily parallelized to run across multiple CPUs.</p>
 <p>The <cite>deploy/</cite> directory contains requirements files for Python, R, and Ubuntu.
 These requirements have been included in the Docker container. To run the
 example in an isolated environment:</p>
-<ol class="arabic">
-<li><p class="first"><cite>Install docker &lt;https://docs.docker.com/&gt;</cite>.</p>
+<ul>
+<li><p class="first">Install <a class="reference external" href="https://docs.docker.com/">docker</a>.</p>
 </li>
 <li><p class="first">Pull the docker container:</p>
 <div class="highlight-python"><div class="highlight"><pre>docker pull daler/p3
@@ -73,14 +73,20 @@ example in an isolated environment:</p>
 </div>
 </li>
 <li><p class="first">Run the docker container:</p>
-<p>docker run -i -t daler/p3 /bin/bash</p>
+<div class="highlight-python"><div class="highlight"><pre>docker run -i -t daler/p3 /bin/bash
+</pre></div>
+</div>
 </li>
 <li><p class="first">You should now be in the running docker container, in the <cite>/data</cite>
 directory, From inside the container, clone the git repository:</p>
-<p>git clone <a class="reference external" href="https://github.com/NCBI-Hackathons/Pharmacogenomics_Prediction_Pipeline_P3.git">https://github.com/NCBI-Hackathons/Pharmacogenomics_Prediction_Pipeline_P3.git</a></p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/NCBI-Hackathons/Pharmacogenomics_Prediction_Pipeline_P3.git
+</pre></div>
+</div>
 </li>
 <li><p class="first">Change to the source code directory:</p>
-<p>cd Pharmacogenomics_Prediction_Pipeline_P3</p>
+<div class="highlight-python"><div class="highlight"><pre>cd Pharmacogenomics_Prediction_Pipeline_P3
+</pre></div>
+</div>
 </li>
 <li><p class="first">Run <cite>snakemake</cite> using the <cite>prepare_example_data</cite> rule to unzip the example
 data into the aptly-named <cite>example_data</cite> directory:</p>
@@ -88,8 +94,6 @@ data into the aptly-named <cite>example_data</cite> directory:</p>
 </pre></div>
 </div>
 </li>
-</ol>
-<ol class="arabic" start="6">
 <li><p class="first">Do a dry run to see what needs to be run:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">snakemake</span> <span class="o">-</span><span class="n">n</span>
 </pre></div>
@@ -105,7 +109,7 @@ consists of one <cite>.RData</cite> file for each configured sample. Each file c
 loaded into R, and contains a single object called <cite>outSL</cite> that contains the
 output of the SuperLearner run for that sample.</p>
 </li>
-</ol>
+</ul>
 </div>
 
 
